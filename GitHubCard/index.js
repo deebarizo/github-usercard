@@ -98,6 +98,14 @@ function cardCreator(user) {
   pFollowers.textContent = `Followers: ${user.followers}`;
   cardInfoDiv.appendChild(pFollowers);
 
+  const pFollowing = document.createElement("p");
+  pFollowing.textContent = `Followers: ${user.following}`;
+  cardInfoDiv.appendChild(pFollowing);
+
+  const pBio = document.createElement("p");
+  pBio.textContent = `${user.bio}`;
+  cardInfoDiv.appendChild(pBio);
+
   return cardDiv;
 }
 

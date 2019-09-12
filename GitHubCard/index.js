@@ -3,6 +3,19 @@
            https://api.github.com/users/<your name>
 */
 
+axios
+  .get("https://api.github.com/users/deebarizo")
+  .then(response => {
+    console.log("response.data", response.data);
+    const newCard = cardCreator(response.data);
+
+    const cardsDiv = document.querySelector(".cards");
+    cardsDiv.appendChild(newCard);
+  })
+  .catch(err => {
+    console.log("err", err);
+  });
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -45,6 +58,48 @@ const followersArray = [];
 </div>
 
 */
+
+function cardCreator(user) {
+  const cardDiv = document.createElement("div");
+  cardDiv.classList.add("card");
+
+  const img = document.createElement("img");
+  img.setAttribute("src", user.avatar_url);
+  cardDiv.appendChild(img);
+
+  const cardInfoDiv = document.createElement("div");
+  cardInfoDiv.classList.add("card-info");
+  cardDiv.appendChild(cardInfoDiv);
+
+  const h3 = document.createElement("h3");
+  h3.classList.add("name");
+  h3.textContent = user.name;
+  cardInfoDiv.appendChild(h3);
+
+  const pUsernameClass = document.createElement("p");
+  pUsernameClass.classList.add("username");
+  pUsernameClass.textContent = user.login;
+  cardInfoDiv.appendChild(pUsernameClass);
+
+  const pLocation = document.createElement("p");
+  pLocation.textContent = `Location: ${user.location}`;
+  cardInfoDiv.appendChild(pLocation);
+
+  const pProfile = document.createElement("p");
+  pProfile.textContent = "Profile: ";
+  cardInfoDiv.appendChild(pProfile);
+
+  const a = document.createElement("a");
+  a.setAttribute("href", user.html_url);
+  a.textContent = user.html_url;
+  a.textContent = pProfile.appendChild(a);
+
+  const pFollowers = document.createElement("p");
+  pFollowers.textContent = `Followers: ${user.followers}`;
+  cardInfoDiv.appendChild(pFollowers);
+
+  return cardDiv;
+}
 
 /* List of LS Instructors Github username's: 
   tetondan

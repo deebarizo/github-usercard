@@ -37,7 +37,7 @@ axios
 */
 
 const followersArray = [
-  "tetondan",
+  "CarlosETurcios",
   "dustinmyers",
   "justsml",
   "luishrd",
